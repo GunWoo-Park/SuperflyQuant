@@ -6,7 +6,7 @@ import time
 
 # Set Variables
 #coin_price_url = "https://poloniex.com/public?command=returnTicker"
-coin_price_url = "https://api.bybit.com"
+coin_price_url = "https://api.bybit.com"##
 
 
 
