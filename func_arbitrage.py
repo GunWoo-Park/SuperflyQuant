@@ -623,13 +623,13 @@ def get_depth_from_orderbook(surface_arb):
     contract_2_direction = surface_arb["direction_trade_2"]
     contract_3_direction = surface_arb["direction_trade_3"]
 
-    pprint.pprint(contract_1)
-    pprint.pprint(contract_2)
-    pprint.pprint(contract_3)
+    # pprint.pprint(contract_1)
+    # pprint.pprint(contract_2)
+    # pprint.pprint(contract_3)
 
-    pprint.pprint(contract_1_direction)
-    pprint.pprint(contract_2_direction)
-    pprint.pprint(contract_3_direction)
+    # pprint.pprint(contract_1_direction)
+    # pprint.pprint(contract_2_direction)
+    # pprint.pprint(contract_3_direction)
 
     # Get Order Book for First Trade Assessment
     #url1 = f"https://poloniex.com/public?command=returnOrderBook&currencyPair={contract_1}&depth=20"
@@ -667,18 +667,33 @@ def get_depth_from_orderbook(surface_arb):
     profit_loss = acquired_coin_t3 - starting_amount
     real_rate_perc = (profit_loss / starting_amount) * 100 if profit_loss != 0 else 0
 
-    if real_rate_perc > -1:
-        return_dict = {
-            "profit_loss": profit_loss,
-            "real_rate_perc": real_rate_perc,
-            "contract_1": contract_1,
-            "contract_2": contract_2,
-            "contract_3": contract_3,
-            "contract_1_direction": contract_1_direction,
-            "contract_2_direction": contract_2_direction,
-            "contract_3_direction": contract_3_direction
-        }
-        return return_dict
-    else:
-        return {}
+    return_dict = {
+        "exchange": "Bybit",
+        "profit_loss": profit_loss,
+        "real_rate_perc": real_rate_perc,
+        "contract_1": contract_1,
+        "contract_2": contract_2,
+        "contract_3": contract_3,
+        "contract_1_direction": contract_1_direction,
+        "contract_2_direction": contract_2_direction,
+        "contract_3_direction": contract_3_direction
+    }
+    
+    return return_dict
+
+    # if real_rate_perc > -1:
+    #     return_dict = {
+    #         "exchange": "Bybit",
+    #         "profit_loss": profit_loss,
+    #         "real_rate_perc": real_rate_perc,
+    #         "contract_1": contract_1,
+    #         "contract_2": contract_2,
+    #         "contract_3": contract_3,
+    #         "contract_1_direction": contract_1_direction,
+    #         "contract_2_direction": contract_2_direction,
+    #         "contract_3_direction": contract_3_direction
+    #     }
+    #     return return_dict
+    # else:
+    #     return {}
 

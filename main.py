@@ -3,6 +3,18 @@ import pprint
 import func_arbitrage
 import json
 import time
+import telegram
+
+token = "5149919236:AAGbSkGDR32-9HxzDf6NJ5TpPaXwyEt7geo"
+
+# 5387730578
+# 81980522
+bot = telegram.Bot(token)
+#updates = bot.getUpdates()
+
+#for i in updates:
+#    print(i.message)
+
 
 # Set Variables
 #coin_price_url = "https://poloniex.com/public?command=returnTicker"
@@ -66,17 +78,17 @@ def step_2():
         surface_arb = func_arbitrage.calc_triangular_arb_surface_rate(t_pair, prices_dict)
 
         if len(surface_arb) > 0:
-            #pprint.pprint(surface_arb["trade_description_1"])
-            #pprint.pprint(surface_arb["trade_description_2"])
-            #pprint.pprint(surface_arb["trade_description_3"])
             real_rate_arb = func_arbitrage.get_depth_from_orderbook(surface_arb)
-            print(real_rate_arb)
+            pprint.pprint(real_rate_arb)
+            if real_rate_arb['profit_loss'] > 0:
+                bot.sendMessage(chat_id=81980522, text = real_rate_arb)
+                bot.sendMessage(chat_id=5387730578, text = real_rate_arb)
             time.sleep(20)
 
 """ MAIN """
 if __name__ == "__main__":
-    #coin_list = step_0()
-    #structured_pairs = step_1(coin_list)
+    coin_list = step_0()
+    structured_pairs = step_1(coin_list)
 
     #pprint.pprint(coin_list)
     while True:
